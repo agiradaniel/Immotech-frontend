@@ -1,0 +1,38 @@
+/*Desktop*/
+@media only screen and (min-width: 1023px) {
+    .cardcontainer{
+        width: 180px;
+        background-color: #EF6332;
+        border-radius: 5px;
+        margin: 0 auto 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between
+    }
+}
+
+/*Mobile*/
+@media only screen and (max-width: 700px) {
+    .cardcontainer{
+        width: 35vw;
+        background-color: #EF6332;
+        border-radius: 5px;
+        margin: 0 auto 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between
+    }
+}
+
+/*Tablet*/
+@media only screen and (min-width: 700px) and  (max-width: 1023px) {
+    .cardcontainer{
+        width: 35vw;
+        background-color: #EF6332;
+        border-radius: 5px;
+        margin: 0 auto 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between
+    }
+}
