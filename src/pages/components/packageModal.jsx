@@ -21,7 +21,7 @@ function PackageModal(props) {
             <img src={CloseButton} style={{position:"absolute", top:"20px", right:"20px", width:"18px", height:"18px", cursor:"pointer"}} onClick={handleClose}/>
           <Modal.Title style={{textAlign:"center", margin:"auto"}}>{props.title}<br/> @ {props.amount}</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{backgroundColor:"#D9D9D9"}}>
+        <Modal.Body style={{backgroundColor:"#D9D9D9", textAlign:"center"}}>
             <ul style={{listStyleType: "square"}}>
                 <li>Enter your <b>phone number</b> <b>below</b> to receive a payment <b>popup</b> on your phone</li>
                 <li>Once the popup appears on your phone enter your <b>M-pesa pin</b> and <b>send</b></li>
