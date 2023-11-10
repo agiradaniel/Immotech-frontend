@@ -1,0 +1,33 @@
+
+/*Desktop*/
+@media only screen and (min-width: 1023px) {
+    .modalinputs{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        margin: auto
+    }
+}
+
+/*Mobile*/
+@media only screen and (max-width: 700px) {
+    .modalinputs{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin: auto
+    }
+}
+
+/*Tablet*/
+@media only screen and (min-width: 700px) and  (max-width: 1023px) {
+    .modalinputs{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        margin: auto
+    }
+}

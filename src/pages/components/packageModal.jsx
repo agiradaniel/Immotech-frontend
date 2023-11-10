@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CloseButton from '../../assets/closebutton.png'
+import CloseButton from '../../assets/closebutton.png';
+import '../../styles/packagemodal.css'
+import axios from 'axios';
+import LoadingContext from '../contexts/loadingContext';
 
 function PackageModal(props) {
   const [show, setShow] = useState(false);
@@ -9,6 +12,26 @@ function PackageModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [phoneNumber, setPhoneNumber] = useState(null);
+  const [amount, setAmount] = useState(null);
+  const [apiResponse, setApiResponse] = useState("");
+  const {setLoading} = useContext(LoadingContext)
+
+
+  const sendPopupRequest = async() => {
+
+    //setAmount(props.amount);
+    
+    setLoading(true);
+
+    //Simulating an api delay
+    //await new Promise(resolve => setTimeout(resolve, 50000));
+
+    const response = await axios.post('http://localhost:3001/purchasedata', { amount, phoneNumber });
+    setLoading(false)
+
+    setApiResponse(response.data)
+    
+  }
 
   return (
     <>
@@ -19,7 +42,7 @@ function PackageModal(props) {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header style={{backgroundColor: "#EF6332", height:"200px", color:"white"}}>
             <img src={CloseButton} style={{position:"absolute", top:"20px", right:"20px", width:"18px", height:"18px", cursor:"pointer"}} onClick={handleClose}/>
-          <Modal.Title style={{textAlign:"center", margin:"auto"}}>{props.title}<br/> @ {props.amount}</Modal.Title>
+          <Modal.Title style={{textAlign:"center", margin:"auto"}}>{props.title}<br/> @ KES {props.amount}/=</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{backgroundColor:"#D9D9D9", textAlign:"center"}}>
             <ul style={{listStyleType: "square"}}>
@@ -27,9 +50,9 @@ function PackageModal(props) {
                 <li>Once the popup appears on your phone enter your <b>M-pesa pin</b> and <b>send</b></li>
             </ul>
 
-            <div style={{textAlign: "center", margin:"auto", display:"flex", flexDirection: "column", width:"40%"}}>
-                <input placeholder="Enter Phone Number" style={{height:"35px", width:"200px", textAlign:"center"}} onChange={(e)=>setPhoneNumber(e.target.value)}/>
-                <button type="submit" className="btn my-4" style={{backgroundColor: "#EF6332", color: "white"}}>Request Popup</button>
+            <div className='modalinputs'>
+                <input placeholder="Enter Phone Number" style={{height:"35px", textAlign:"center"}} onChange={(e)=>setPhoneNumber(e.target.value)}/><br/>
+                <button onClick={sendPopupRequest} type="submit" className="btn mx-auto mb-3" style={{backgroundColor: "#EF6332", color: "white"}}>Request Popup</button>
             </div>
 
             <p className="sms">** Once payment is completed you will <strong>immediately</strong> receive your <strong>Voucher Code</strong> via <strong>SMS</strong> to your phone. **</p>

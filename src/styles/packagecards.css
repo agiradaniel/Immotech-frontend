@@ -9,6 +9,15 @@
         flex-direction: column;
         justify-content: space-between
     }
+    .cardtitle{
+        width: 100%;
+        padding: 25px 5px 5px;
+        text-align: center
+    }
+    .cardtitle p{
+        color:white;
+        font-weight: bold
+    }
 }
 
 /*Mobile*/
@@ -22,6 +31,19 @@
         flex-direction: column;
         justify-content: space-between
     }
+    .cardtitle{
+        width: 100%;
+        padding: 15px 5px;
+        text-align: center
+    }
+    .cardtitle p{
+        color:white;
+        font-weight: bold;
+        width: 80%;
+        margin: auto
+    }
+
+
 }
 
 /*Tablet*/
@@ -34,5 +56,14 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between
+    }
+    .cardtitle{
+        width: 100%;
+        padding: 25px 5px 5px;
+        text-align: center
+    }
+    .cardtitle p{
+        color:white;
+        font-weight: bold
     }
 }

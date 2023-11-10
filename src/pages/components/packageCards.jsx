@@ -9,11 +9,11 @@ const PackageCards = (props) => {
 
        
             <div className="cardcontainer">
-                <div style={{width:"100%", padding:"25px 0 5px", textAlign:"center"}}>
-                    <p style={{color:"white", fontWeight:"bold"}}>{props.title}</p>
+                <div className='cardtitle'>
+                    <p>{props.title}</p>
                 </div>
                 <div style={{width:"100%", backgroundColor:"#DACCC6", borderRadius:"0 0 5px 5px", textAlign:"center", paddingBottom:"20px"}}>
-                    <p style={{fontWeight:"bold", marginTop:"15px"}}>{props.amount}</p>
+                    <p style={{fontWeight:"bold", marginTop:"15px"}}>{"KES " + props.amount + "/="}</p>
                     
                    <PackageModal title={props.title} amount={props.amount}/>
                 </div>
