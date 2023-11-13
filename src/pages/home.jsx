@@ -2,26 +2,33 @@ import { React, useState, useContext } from 'react';
 import BackgroundImage from '../assets/background.jpg'
 import PackageCards from './components/packageCards';
 import PackageModal from './components/packageModal';
-import "../styles/home.css"
+import "../styles/home.css";
 import axios from 'axios';
 import LoadingContext from './contexts/loadingContext';
 
+
 const Home = () => {
 
-  const [customAmount, setCustomAmount] = useState(100);
+  const [customAmount, setCustomAmount] = useState("20");
   const [voucher, setVoucher] = useState("");
   const [apiResponse, setApiResponse] = useState("");
   const {setLoading} = useContext(LoadingContext);
 
+  /*
   const connectToInternet = async () => {
+    
     setLoading(true)
     const response = await axios.post('http://localhost:3001/verifyvoucher', { voucher });
     setLoading(false)
     setApiResponse(response)
+    
   }
+  */
 
   return (
     <div style={{backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover", height:"100vh", width:"100%", position:"fixed", overflow:"scroll"}}>
+      
+
       <h3 style={{color:"white", textAlign:"center", paddingTop:"20px", fontFamily:"Montserrat"}}>UNLIMITED INTERNET</h3>
       
        <div className="maincontainer">
@@ -64,8 +71,32 @@ const Home = () => {
         <div style={{padding:"0 20px"}}>
           <p style={{paddingTop:"20px"}}>** Once payment is completed you will <b>immediately</b> receive your Voucher Code via SMS to your phone. **</p>
           <p >Once you receive your voucher, Input it into the textbox below then click connect</p>
-          <input className='voucherinput' type="text" onChange={(e)=> setVoucher(e.target.value)} placeholder='INPUT YOUR VOUCHER CARD HERE'/><br/>
-          <button onClick={connectToInternet} style={{backgroundColor:"#4FA846", color:"white", border:"none",height:"35px",width:"190px", borderRadius:"5px", margin:"20px auto"}}>Connect To Internet</button>
+          
+            <form name="input" method="post" action="login">
+
+              <input type="hidden" name="by" value="voucher" />
+              <input type="hidden" name="page_error" value="index.html" />
+              <input type="hidden" name="package" value="zeil418v" />
+              <input type="hidden" name="landing_url" value="https://www.imottechsolutions.com" />
+
+              <div>
+                            
+                <unifi if="has_error">
+                <h4 class="error">
+                  <unifi error="error" />
+                </h4>
+                  <unifi else="has_error" />
+                <h4 class="card-title">
+                  <unifi txt="UseVoucher" />
+                </h4>
+                </unifi>
+              </div>
+                       
+              <input className='voucherinput' type="text" onChange={(e)=> setVoucher(e.target.value)} placeholder='INPUT YOUR VOUCHER CARD HERE' autoComplete="off" required/><br/>
+              <button style={{backgroundColor:"#4FA846", color:"white", border:"none",height:"35px",width:"190px", borderRadius:"5px", margin:"20px auto"}} type="submit">Connect To Internet</button>
+                                         
+              </form>
+
           <p style={{fontWeight:"bold"}}>Please Note</p>
           <p style={{fontWeight:"bold"}}>** Month = 28 Days **</p>
           <p>** If it happens that you don't receive a voucher within <b>5 mins</b> after receiving MPESA confirmation SMS, kindly <a style={{textDecoration:"none", fontWeight:"bold", }} href="sms://+254794911941?body=UNLIMITED%20Wi~Fi:%20Kindly%20assist.%20I%20purchased%20a%20Wi~Fi%20voucher%20at%20...">SMS us for assistance</a> on +254794911941 **</p>
